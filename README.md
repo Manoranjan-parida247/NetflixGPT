@@ -2,6 +2,8 @@
 
 - create react app using vite
 - Configured Material ui
+- Header
+- Sign in / Sign up form
 
 # Features
 
