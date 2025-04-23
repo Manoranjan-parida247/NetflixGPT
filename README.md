@@ -8,6 +8,7 @@
 - Form validation
 - UseRef
 - authentication (sign up/ sign in)
+- created redux store
 
 # Features
 

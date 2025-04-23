@@ -5,7 +5,9 @@ import { styled } from '@mui/material/styles';
 import { validateForm } from '../utils/validate.js';
 import { auth } from '../utils/firebase.js';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
-
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addUser } from '../utils/userSlice'
 
 
 
@@ -39,6 +41,8 @@ const NetflixTextField = styled(TextField)(({ theme }) => ({
 const Login = () => {
     const [isSignInForm, setIsSignInForm] = useState(true);
     const [formErrors, setFormErrors] = useState({});
+    const navigate = useNavigate();
+    const disPatch = useDispatch();
 
 
     const email = useRef(null);
@@ -102,6 +106,7 @@ const Login = () => {
                 const userCredential = await signInWithEmailAndPassword(auth, emailVal, passwordVal);
                 console.log(userCredential)
                 console.log("Logged in:", userCredential.user);
+                navigate("/browse");
             } else {
                 // 🆕 Signup
                 const userCredential = await createUserWithEmailAndPassword(auth, emailVal, passwordVal);
@@ -111,8 +116,12 @@ const Login = () => {
                     displayName: nameVal
                 });
 
+                const { uid, email, displayName } = auth.currentUser;
+                disPatch(addUser({ uid: uid, email: email, displayName: displayName }));
+
                 console.log("Signed up with name:", userCredential.user.displayName);
                 console.log(userCredential)
+                navigate("/browse");
             }
 
             // ✅ Clear form fields
@@ -224,7 +233,7 @@ const Login = () => {
 
                     {/* <Button type='submit' style={inputStyleSignin} onClick={handleButtonclick}>{isSignInForm ? "Sign In" : "Sign up"}</Button> */}
                     <Button type='submit' variant="contained" color='error' size='large' fullWidth>{isSignInForm ? "Sign In" : "Sign up"}</Button>
-                    
+
                     {formErrors.general && <Box component={"p"} sx={{ color: 'red', cursor: "pointer" }} >
                         {formErrors.general}
                     </Box>}
@@ -237,7 +246,7 @@ const Login = () => {
                     >
                         {isSignInForm ? "New to Netflix? Sign up now." : "Already a registered user.."}
                     </Box>
-                    
+
                 </form>
             </Box>
         </Box>

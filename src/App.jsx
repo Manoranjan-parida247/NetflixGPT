@@ -2,12 +2,17 @@ import React from 'react'
 import './App.css'
 import { Typography } from '@mui/material'
 import Body from './components/Body'
+import appStore from "./utils/appStore"
+import { Provider } from 'react-redux'
 
 function App() {
-  
+
   return (
     <>
-      <Body />
+      <Provider store={appStore}>
+        <Body />
+      </Provider>
+
     </>
   )
 }
