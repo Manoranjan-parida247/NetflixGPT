@@ -2,8 +2,12 @@
 
 - create react app using vite
 - Configured Material ui
+- Roting
 - Header
 - Sign in / Sign up form
+- Form validation
+- UseRef
+- authentication (sign up/ sign in)
 
 # Features
 
