@@ -106,7 +106,7 @@ const Login = () => {
                 const userCredential = await signInWithEmailAndPassword(auth, emailVal, passwordVal);
                 console.log(userCredential)
                 console.log("Logged in:", userCredential.user);
-                navigate("/browse");
+                // navigate("/browse");
             } else {
                 // 🆕 Signup
                 const userCredential = await createUserWithEmailAndPassword(auth, emailVal, passwordVal);
@@ -121,7 +121,7 @@ const Login = () => {
 
                 console.log("Signed up with name:", userCredential.user.displayName);
                 console.log(userCredential)
-                navigate("/browse");
+                // navigate("/browse");
             }
 
             // ✅ Clear form fields

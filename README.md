@@ -9,6 +9,8 @@
 - UseRef
 - authentication (sign up/ sign in)
 - created redux store
+- BugFix : sign up user display name
+- Bugfix: if the user is not logged in Redirect / browse to login page vice versa
 
 # Features
 
