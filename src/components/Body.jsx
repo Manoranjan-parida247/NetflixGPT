@@ -31,7 +31,7 @@ const Body = () => {
             } else {
                 // User is signed out
                 // ...
-                disPatch(removeUser);
+                disPatch(removeUser());
             }
         });
     }, [])
