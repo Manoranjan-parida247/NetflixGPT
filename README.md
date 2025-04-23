@@ -11,6 +11,8 @@
 - created redux store
 - BugFix : sign up user display name
 - Bugfix: if the user is not logged in Redirect / browse to login page vice versa
+- Register TMDB api & create an app and get an access token
+- Get get data from TMDB now playing movie list api 
 
 # Features
 

@@ -6,6 +6,7 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from '../utils/firebase';
 import { useNavigate } from 'react-router-dom';
 import { removeUser, addUser } from '../utils/userSlice';
+import { LOGO } from '../utils/constant';
 
 const Header = () => {
   const user = useSelector((store)=> store.user)
@@ -23,7 +24,7 @@ const Header = () => {
   }
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
         if (user) {
 
             const { uid, email, displayName } = user;
@@ -37,12 +38,14 @@ const Header = () => {
             navigate('/')
         }
     });
+
+    return ()=> unsubscribe();
 }, [])
 
   return (
     <Box sx={{ position: 'absolute', background: 'linear-gradient(to bottom, transparent, black)',width:"100%", display:"flex",justifyContent:"space-between", alignItems:"center" }}>
       <img
-        src='https://help.nflxext.com/helpcenter/OneTrust/oneTrust_production/consent/87b6a5c0-0104-4e96-a291-092c11350111/01938dc4-59b3-7f67-86aa-d06aa27c6cc0/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png'
+        src={LOGO}
         alt='logo'
         style={{ width: '250px' }}
       />
